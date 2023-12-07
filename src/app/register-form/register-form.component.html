@@ -1,0 +1,52 @@
+<form class="column" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-input-row">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+    <button
+      class="field-hint-button visible-{{registerForm.controls['email'].invalid}}"
+      matTooltip="{{ getEmailValidationMessage() }}"
+      matTooltipPosition="right"
+    >
+      !
+    </button>
+    
+  </div>
+  <div class="form-input-row">
+    <mat-form-field>
+      <mat-label>Hasło</mat-label>
+      <input matInput formControlName="password" required type="password" />
+    </mat-form-field>
+    <button
+      class="field-hint-button visible-{{registerForm.controls['password'].invalid}}"
+      matTooltip="{{ getPasswordValidationMessage() }}"
+      matTooltipPosition="right"
+    >
+      !
+    </button>
+    
+  </div>
+  <div class="form-input-row">
+    <mat-form-field>
+      <mat-label>Powtórz hasło</mat-label>
+      <input
+        matInput
+        formControlName="repeatPassword"
+        required
+        type="password"
+      />
+    </mat-form-field>
+    <button
+      class="field-hint-button visible-{{registerForm.controls['repeatPassword'].invalid}}"
+      matTooltip="{{ getRepeatedPasswordValidationMessage() }}"
+      matTooltipPosition="right"
+    >
+      !</button
+    >
+  </div>
+
+  <button mat-raised-button color="primary" [disabled]="!registerForm.valid">
+    Załóz konto
+  </button>
+</form>

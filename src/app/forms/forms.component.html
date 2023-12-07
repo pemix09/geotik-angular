@@ -1,0 +1,4 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" [(selectedIndex)]="selectedIndex">
+    <mat-tab label="Zaloguj"><app-login-from /></mat-tab>
+    <mat-tab label="Zarejestruj"><app-register-form [onSubmitSuccess]="onRegisterSuccess"/></mat-tab>
+</mat-tab-group>

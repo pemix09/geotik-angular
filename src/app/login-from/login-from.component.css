@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.black-bg {
+    background-color: black;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+}
+
+.form-input {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
