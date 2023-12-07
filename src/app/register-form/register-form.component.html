@@ -5,13 +5,15 @@
       <input matInput formControlName="email" required />
     </mat-form-field>
     <button
-      class="field-hint-button visible-{{registerForm.controls['email'].invalid}}"
+      type="button"
+      class="field-hint-button visible-{{
+        registerForm.controls['email'].invalid
+      }} valid-form-{{registerForm.valid}}"
       matTooltip="{{ getEmailValidationMessage() }}"
       matTooltipPosition="right"
     >
       !
     </button>
-    
   </div>
   <div class="form-input-row">
     <mat-form-field>
@@ -19,13 +21,15 @@
       <input matInput formControlName="password" required type="password" />
     </mat-form-field>
     <button
-      class="field-hint-button visible-{{registerForm.controls['password'].invalid}}"
+      type="button"
+      class="field-hint-button visible-{{
+        registerForm.controls['password'].invalid
+      }} valid-form-{{registerForm.valid}}"
       matTooltip="{{ getPasswordValidationMessage() }}"
       matTooltipPosition="right"
     >
       !
     </button>
-    
   </div>
   <div class="form-input-row">
     <mat-form-field>
@@ -38,12 +42,15 @@
       />
     </mat-form-field>
     <button
-      class="field-hint-button visible-{{registerForm.controls['repeatPassword'].invalid}}"
+      type="button"
+      class="field-hint-button visible-{{
+        registerForm.controls['repeatPassword'].invalid
+      }} valid-form-{{registerForm.valid}}"
       matTooltip="{{ getRepeatedPasswordValidationMessage() }}"
       matTooltipPosition="right"
     >
-      !</button
-    >
+      !
+    </button>
   </div>
 
   <button mat-raised-button color="primary" [disabled]="!registerForm.valid">

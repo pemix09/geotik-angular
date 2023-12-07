@@ -96,6 +96,10 @@ export class RegisterFormComponent {
   }
 
   async onSubmit() {
+
+    if (this.registerForm.invalid) {
+      return;
+    }
     
     const res = from(this.authService.register(this.emailInput!.value!, this.passwordInput!.value!));
 

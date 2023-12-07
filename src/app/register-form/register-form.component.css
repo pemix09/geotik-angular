@@ -36,3 +36,7 @@
 .error-border {
     border: 2px red solid;
 }
+
+.valid-form-true {
+    display: none !important;
+}
