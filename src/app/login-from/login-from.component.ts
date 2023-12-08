@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientModule } from "@angular/common/http";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { IconService } from '../services/icon.service';
 
 @Component({
   selector: 'app-login-from',
@@ -30,9 +31,8 @@ export class LoginFromComponent {
   formFieldsValidationMessagesHidden: boolean = true;
   formResponseHidden: boolean = true;
 
-  constructor(private authService: AuthService, private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer) {
-    this.matIconRegistry.addSvgIcon('deleteIcon', this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/delete.svg'));
+  constructor(private authService: AuthService, private iconService: IconService) {
+    this.iconService.registerIcons();
     this.loginForm.valueChanges.subscribe(() => {
       this.clearErrors();
     })
@@ -74,11 +74,11 @@ export class LoginFromComponent {
 
   public clearPasswordInput(): void {
     console.debug("clearingPasswordInput");
-    this.passwordInput?.setValue(null);
+    this.passwordInput?.setValue('');
   }
   public clearEmailInput(): void {
     console.debug("clearingEmailInput");
-    this.emailInput?.setValue(null);
+    this.emailInput?.setValue('');
   }
 
   public async onSubmit() {
