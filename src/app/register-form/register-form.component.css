@@ -18,6 +18,11 @@
     flex-direction: row;
 }
 
+.form-column-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .field-hint-button {
     cursor: pointer;
     border-radius: 50%;

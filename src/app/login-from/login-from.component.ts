@@ -9,8 +9,6 @@ import { from } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientModule } from "@angular/common/http";
-import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
 import { IconService } from '../services/icon.service';
 
 @Component({

@@ -7,12 +7,14 @@ import { AuthService } from '../services/auth.service';
 import { from } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTooltipModule} from '@angular/material/tooltip';
-
+import { IconService } from '../services/icon.service';
+import { MatIconModule } from '@angular/material/icon';
+import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatTooltipModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatTooltipModule, MatIconModule, PasswordStrengthComponent],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
 })
@@ -23,12 +25,13 @@ export class RegisterFormComponent {
     Validators.pattern(/[A-Z]/), Validators.pattern(/[a-z]/), Validators.minLength(8)]),
     repeatPassword: new FormControl('', [Validators.required, this.validateRepeatedPasword()])
   })
+  strongPassword = false;
 
   @Input()
   onSubmitSuccess!: () => void;
 
-  constructor(private authService: AuthService) {
-
+  constructor(private authService: AuthService, private iconService: IconService) {
+    this.iconService.registerIcons();
   }
 
   get emailInput() { return this.registerForm.get('email'); }
@@ -100,15 +103,18 @@ export class RegisterFormComponent {
       return;
     }
     
-    const res = from(this.authService.register(this.emailInput!.value!, this.passwordInput!.value!));
+    const res = await this.authService.register(this.emailInput!.value!, this.passwordInput!.value!)
 
-    res.subscribe({
-      complete: () => {
+    res.subscribe((value: any) => {
+      console.log(value);
+      if ("status" in value && value["status"] === 200) {
+        console.log("Register status: " + value["status"]);
         this.onSubmitSuccess();
-      },
-      error: (error: HttpErrorResponse) => {
-        console.debug(error.status);
-      },
+      } else if ("status" in value) {
+        console.error("Register status: " + value["status"]);
+      } else {
+        console.error("Register status: unknown");
+      }
     });
   }
 }
