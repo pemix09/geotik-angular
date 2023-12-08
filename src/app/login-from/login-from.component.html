@@ -6,24 +6,41 @@
       placeholder="pat@example.com"
       formControlName="email"
       required
+      autocomplete="off"
     />
+    @if (loginForm.controls['email'].value != '') {
+      <button (click)="clearEmailInput()" type="button" mat-icon-button matSuffix>
+        <mat-icon svgIcon="deleteIcon"/>
+      </button>
+    }
+  </mat-form-field>
+  <div class="form-div">
+    <mat-form-field class="form-input">
+      <input
+        matInput
+        placeholder="Password"
+        type="password"
+        formControlName="password"
+        required
+        autocomplete="off"
+      />
+      @if (loginForm.controls['password'].value != '') {
+        <button (click)="clearPasswordInput()" type="button" mat-icon-button matSuffix>
+          <mat-icon svgIcon="deleteIcon"/>
+        </button>
+      }
+    </mat-form-field>
+      <a class="form-link" routerLink="/resetPassword">Zresetuj hasło</a>
+  </div>
+
+  <div class="form-errors-container" [hidden]="formFieldsValidationMessagesHidden">
     @if (loginForm.controls['email'].invalid) {
-    <mat-error>{{ getEmailValidationMessage() }}</mat-error>
+    <p class="error">{{ getEmailValidationMessage() }}</p>
+    } @if (loginForm.controls['password'].invalid) {
+    <p class="error">{{ getPasswordValidationMessage() }}</p>
     }
-  </mat-form-field>
-  <mat-form-field class="form-input">
-    <input
-      matInput
-      placeholder="Password"
-      type="password"
-      formControlName="password"
-      required
-    />
-    @if (loginForm.controls['password'].invalid) {
-    <mat-error>{{ getPasswordValidationMessage() }}</mat-error>
-    }
-  </mat-form-field>
-  <a routerLink="/resetPassword">reset password</a>
+  </div>
+
   <button
     mat-raised-button
     color="primary"
@@ -32,10 +49,11 @@
   >
     Login
   </button>
-  @if (successResponse) {
-    <p class="success">{{successResponse}}</p>
-  }
-  @if (errorResponse) {
-    <p class="error">{{errorResponse}}</p>
-  }
+  <div class="big-top-margin" [hidden]="formResponseHidden">
+    @if (successResponse) {
+    <p class="success">{{ successResponse }}</p>
+    } @if (errorResponse) {
+    <p class="error">{{ errorResponse }}</p>
+    }
+  </div>
 </form>

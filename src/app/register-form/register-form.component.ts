@@ -96,7 +96,6 @@ export class RegisterFormComponent {
   }
 
   async onSubmit() {
-
     if (this.registerForm.invalid) {
       return;
     }
